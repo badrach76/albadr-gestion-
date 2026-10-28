@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#174b3b">
+  <title>وحدة إنتاج زيت الزيتون البدر</title>
+  <style>
+    :root {
+      --green: #174b3b;
+      --gold: #c5a059;
+      --bg: #f4f6f3;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: #26352e;
+    }
+    header {
+      background: var(--green);
+      color: white;
+      padding: 22px 18px;
+      border-bottom: 4px solid var(--gold);
+    }
+    header h1 { margin: 0 0 8px; font-size: 23px; }
+    header p { margin: 0; font-size: 14px; }
+    main { max-width: 1100px; margin: auto; padding: 18px; }
+    nav {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
+    }
+    nav button {
+      border: 0; border-radius: 8px; padding: 11px 15px;
+      background: var(--green); color: white; cursor: pointer;
+    }
+    nav button.active { background: var(--gold); color: #202820; }
+    .cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-bottom: 18px;
+    }
+    .card, section {
+      background: var(--white); border-radius: 12px;
+      padding: 18px; box-shadow: 0 2px 8px #173d3010;
+    }
+    .card small { color: #64736a; }
+    .card strong { display: block; font-size: 24px; margin-top: 10px; }
+    h2 { color: var(--green); font-size: 19px; margin-top: 0; }
+    .fields {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+    label { display: block; font-size: 14px; }
+    input {
+      width: 100%; margin-top: 6px; padding: 11px;
+      border: 1px solid #ccd5cf; border-radius: 7px;
+      font: inherit; background: white;
+    }
+    .primary {
+      background: var(--green); color: white; border: 0;
+      padding: 12px 20px; border-radius: 8px; cursor: pointer;
+      margin-top: 16px; font: inherit;
+    }
+    .table-wrap { overflow-x: auto; margin-top: 18px; }
+    table { width: 100%; border-collapse: collapse; min-width: 580px; }
+    th, td { padding: 11px; border-bottom: 1px solid #e4e9e5; text-align: right; }
+    th { background: #edf2ee; }
+    .notice {
+      margin-top: 16px; padding: 12px; border-radius: 8px;
+      background: #fff5dd; color: #624c19; font-size: 13px;
+    }
+    footer { text-align: center; padding: 22px; color: #66736b; font-size: 12px; }
+    @media(max-width:650px) {
+      .cards { grid-template-columns: 1fr; }
+      .fields { grid-template-columns: 1fr; }
+      header h1 { font-size: 20px; }
+      main { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>وحدة إنتاج زيت الزيتون البدر</h1>
+    <p>نظام تدبير الاستقبال والإنتاج والحسابات والمخزون</p>
+  </header>
+
+  <main>
+    <nav aria-label="القائمة الرئيسية">
+      <button class="active" type="button" data-page="home">الرئيسية</button>
+      <button type="button" data-page="reception">استقبال الزيتون</button>
+      <button type="button" data-page="customers">الزبائن</button>
+      <button type="button" data-page="production">الإنتاج</button>
+      <button type="button" data-page="stock">المخزون والتسليم</button>
+      <button type="button" data-page="accounts">الحسابات</button>
+    </nav>
+
+    <div id="home">
+      <div class="cards">
+        <div class="card">
+          <small>عدد الوصولات المسجلة في هذه الجلسة</small>
+          <strong id="receiptCount">0</strong>
+        </div>
+        <div class="card">
+          <small>مجموع الوزن الصافي (كلغ)</small>
+          <strong id="totalWeight">0</strong>
+        </div>
+        <div class="card">
+          <small>واجب الطحن المحسوب (درهم)</small>
+          <strong id="totalFees">0.00</strong>
+        </div>
+      </div>
+      <section>
+        <h2>مرحبًا بك</h2>
+        <p>ابدأ بتسجيل الزبائن ووصولات استلام الزيتون، ثم انتقل إلى الإنتاج والمخزون والحسابات.</p>
+        <p>السعر الابتدائي للطحن: <strong>0.70 درهم للكيلوغرام</strong>.</p>
+      </section>
+    </div>
+
+    <section id="reception" hidden>
+      <h2>تسجيل وصل استلام الزيتون</h2>
+      <form id="receiptForm">
+        <div class="fields">
+          <label>اسم الزبون
+            <input id="customer" required maxlength="120" placeholder="الاسم الكامل">
+          </label>
+          <label>رقم الهاتف
+            <input id="phone" inputmode="tel" placeholder="اختياري">
+          </label>
+          <label>الوزن الإجمالي (كلغ)
+            <input id="gross" type="number" min="0.01" step="0.01" required>
+          </label>
+          <label>وزن الخصم (كلغ)
+            <input id="tare" type="number" min="0" step="0.01" value="0" required>
+          </label>
+          <label>سعر الطحن (درهم/كلغ)
+            <input id="rate" type="number" min="0" step="0.01" value="0.70" required>
+          </label>
+        </div>
+        <p id="calculation">الوزن الصافي: 0 كلغ — واجب الطحن: 0.00 درهم</p>
+        <button class="primary" type="submit">إضافة الوصل إلى سجل التجربة</button>
+      </form>
+      <div class="notice">
+        هذه مرحلة أولية لاختبار الواجهة فقط. البيانات لا تزال مؤقتة داخل المتصفح، ولم تُربط بقاعدة البيانات بعد.
+      </div>
+    </section>
+
+    <section id="customers" hidden>
+      <h2>الزبائن</h2>
+      <p>سيتم هنا إعداد سجل الزبائن وربط كل وصل وإنتاج وحساب بصاحبه.</p>
+    </section>
+
+    <section id="production" hidden>
+      <h2>الإنتاج</h2>
+      <p>سيتم تسجيل كمية الزيت المستخرجة باللتر لكل زبون، مع تسجيل مخلفات العصر بصورة مستقلة.</p>
+    </section>
+
+    <section id="stock" hidden>
+      <h2>المخزون والتسليم</h2>
+      <p>سيتم فصل زيت الزبائن عن زيت المعصرة، مع وصولات تسليم مرقمة ومنع الصرف المكرر.</p>
+    </section>
+
+    <section id="accounts" hidden>
+      <h2>الحسابات</h2>
+      <p>سيتم تدبير واجبات الطحن والأداءات والتسبيقات والديون والمصاريف.</p>
+    </section>
+
+    <section id="receiptList" style="margin-top:18px">
+      <h2>الوصولات المسجلة في هذه الجلسة</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>رقم الوصل</th><th>الزبون</th><th>الوزن الصافي</th>
+              <th>السعر</th><th>واجب الطحن</th>
+            </tr>
+          </thead>
+          <tbody id="receiptRows">
+            <tr><td colspan="5">لا توجد وصولات بعد.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>وحدة إنتاج زيت الزيتون البدر — النسخة التأسيسية</footer>
+
+  <script>
+    const receipts = [];
+    let nextReceipt = 1;
+    const $ = id => document.getElementById(id);
+
+    document.querySelectorAll("nav button").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll("main > div[id], main > section[id]")
+          .forEach(el => {
+            if (el.id !== "receiptList") el.hidden = true;
+          });
+        $(button.dataset.page).hidden = false;
+        document.querySelectorAll("nav button")
+          .forEach(b => b.classList.toggle("active", b === button));
+      });
+    });
+
+    function calculate() {
+      const gross = Number($("gross").value) || 0;
+      const tare = Number($("tare").value) || 0;
+      const rate = Number($("rate").value) || 0;
+      const net = Math.max(0, gross - tare);
+      $("calculation").textContent =
+        `الوزن الصافي: ${net.toFixed(2)} كلغ — واجب الطحن: ${(net * rate).toFixed(2)} درهم`;
+    }
+
+    ["gross", "tare", "rate"].forEach(id =>
+      $(id).addEventListener("input", calculate)
+    );
+
+    $("receiptForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const customer = $("customer").value.trim();
+      const gross = Number($("gross").value);
+      const tare = Number($("tare").value);
+      const rate = Number($("rate").value);
+
+      if (!customer || gross <= 0 || tare < 0 || tare > gross || rate < 0) {
+        alert("يرجى التحقق من اسم الزبون والأوزان والسعر.");
+        return;
+      }
+
+      receipts.push({
+        number: nextReceipt++,
+        customer,
+        net: gross - tare,
+        rate,
+        fee: (gross - tare) * rate
+      });
+
+      renderReceipts();
+      $("receiptForm").reset();
+      $("tare").value = "0";
+      $("rate").value = "0.70";
+      calculate();
+      alert("أضيف الوصل إلى سجل التجربة في هذه الصفحة.");
+    });
+
+    function renderReceipts() {
+      $("receiptRows").replaceChildren();
+      receipts.forEach(receipt => {
+        const row = document.createElement("tr");
+        [
+          receipt.number,
+          receipt.customer,
+          receipt.net.toFixed(2) + " كلغ",
+          receipt.rate.toFixed(2) + " درهم",
+          receipt.fee.toFixed(2) + " درهم"
+        ].forEach(value => {
+          const cell = document.createElement("td");
+          cell.textContent = value;
+          row.appendChild(cell);
+        });
+        $("receiptRows").appendChild(row);
+      });
+
+      $("receiptCount").textContent = receipts.length;
+      $("totalWeight").textContent =
+        receipts.reduce((sum, item) => sum + item.net, 0).toFixed(2);
+      $("totalFees").textContent =
+        receipts.reduce((sum, item) => sum + item.fee, 0).toFixed(2);
+    }
+  </script>
+</body>
+</html>
