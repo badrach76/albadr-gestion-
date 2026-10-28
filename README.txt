@@ -1,0 +1,1 @@
+ضع هنا ملف اللوغو الذي زودتنا به باسم societealbadr.jpg (يمكنك إعادة تسمية sociétéalbadr.jpg إلى societealbadr.jpg).
