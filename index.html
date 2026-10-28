@@ -1,273 +1,51 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#174b3b">
-  <title>وحدة إنتاج زيت الزيتون البدر</title>
-  <style>
-    :root {
-      --green: #174b3b;
-      --gold: #c5a059;
-      --bg: #f4f6f3;
-      --white: #fff;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Tahoma, Arial, sans-serif;
-      background: var(--bg);
-      color: #26352e;
-    }
-    header {
-      background: var(--green);
-      color: white;
-      padding: 22px 18px;
-      border-bottom: 4px solid var(--gold);
-    }
-    header h1 { margin: 0 0 8px; font-size: 23px; }
-    header p { margin: 0; font-size: 14px; }
-    main { max-width: 1100px; margin: auto; padding: 18px; }
-    nav {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
-    }
-    nav button {
-      border: 0; border-radius: 8px; padding: 11px 15px;
-      background: var(--green); color: white; cursor: pointer;
-    }
-    nav button.active { background: var(--gold); color: #202820; }
-    .cards {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 12px; margin-bottom: 18px;
-    }
-    .card, section {
-      background: var(--white); border-radius: 12px;
-      padding: 18px; box-shadow: 0 2px 8px #173d3010;
-    }
-    .card small { color: #64736a; }
-    .card strong { display: block; font-size: 24px; margin-top: 10px; }
-    h2 { color: var(--green); font-size: 19px; margin-top: 0; }
-    .fields {
-      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 13px;
-    }
-    label { display: block; font-size: 14px; }
-    input {
-      width: 100%; margin-top: 6px; padding: 11px;
-      border: 1px solid #ccd5cf; border-radius: 7px;
-      font: inherit; background: white;
-    }
-    .primary {
-      background: var(--green); color: white; border: 0;
-      padding: 12px 20px; border-radius: 8px; cursor: pointer;
-      margin-top: 16px; font: inherit;
-    }
-    .table-wrap { overflow-x: auto; margin-top: 18px; }
-    table { width: 100%; border-collapse: collapse; min-width: 580px; }
-    th, td { padding: 11px; border-bottom: 1px solid #e4e9e5; text-align: right; }
-    th { background: #edf2ee; }
-    .notice {
-      margin-top: 16px; padding: 12px; border-radius: 8px;
-      background: #fff5dd; color: #624c19; font-size: 13px;
-    }
-    footer { text-align: center; padding: 22px; color: #66736b; font-size: 12px; }
-    @media(max-width:650px) {
-      .cards { grid-template-columns: 1fr; }
-      .fields { grid-template-columns: 1fr; }
-      header h1 { font-size: 20px; }
-      main { padding: 12px; }
-    }
-  </style>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#174b3b"><title>وحدة إنتاج زيت الزيتون البدر</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <h1>وحدة إنتاج زيت الزيتون البدر</h1>
-    <p>نظام تدبير الاستقبال والإنتاج والحسابات والمخزون</p>
-  </header>
-
-  <main>
-    <nav aria-label="القائمة الرئيسية">
-      <button class="active" type="button" data-page="home">الرئيسية</button>
-      <button type="button" data-page="reception">استقبال الزيتون</button>
-      <button type="button" data-page="customers">الزبائن</button>
-      <button type="button" data-page="production">الإنتاج</button>
-      <button type="button" data-page="stock">المخزون والتسليم</button>
-      <button type="button" data-page="accounts">الحسابات</button>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">ب</div><div><strong>معصرة البدر</strong><small>تدبير وحدة إنتاج زيت الزيتون</small></div></div>
+    <nav id="mainNav" aria-label="القائمة الرئيسية">
+      <button class="nav-item active" data-view="dashboard"><span>▦</span> لوحة القيادة</button>
+      <button class="nav-item" data-view="reception"><span>＋</span> استقبال الزيتون</button>
+      <button class="nav-item" data-view="customers"><span>♙</span> الزبائن</button>
+      <button class="nav-item" data-view="production"><span>⚙</span> الإنتاج والطحن</button>
+      <button class="nav-item" data-view="stock"><span>▤</span> مخزون الزيت</button>
+      <button class="nav-item" data-view="delivery"><span>↗</span> تسليم الزيت</button>
+      <button class="nav-item" data-view="accounts"><span>◷</span> الحسابات والأداءات</button>
+      <button class="nav-item" data-view="expenses"><span>−</span> المصاريف</button>
+      <button class="nav-item" data-view="reports"><span>▥</span> التقارير</button>
+      <button class="nav-item" data-view="settings"><span>⚙</span> الإعدادات</button>
     </nav>
-
-    <div id="home">
-      <div class="cards">
-        <div class="card">
-          <small>عدد الوصولات المسجلة في هذه الجلسة</small>
-          <strong id="receiptCount">0</strong>
+    <div class="sidebar-bottom"><span class="status-dot"></span> نسخة تأسيسية — غير مربوطة بعد بقاعدة البيانات</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><button id="menuToggle" class="menu-toggle" aria-label="فتح القائمة">☰</button><div><p class="eyebrow">نظام تدبير المعصرة</p><h1 id="pageTitle">لوحة القيادة</h1></div><div class="today" id="today"></div></header>
+    <div class="content">
+      <section class="view" id="view-dashboard">
+        <div class="welcome"><div><p class="eyebrow light">مرحباً بك</p><h2>وحدة إنتاج زيت الزيتون البدر</h2><p>تتبع الاستقبال والإنتاج والمخزون والحسابات من مكان واحد.</p></div><div class="olive-art" aria-hidden="true">✳</div></div>
+        <div class="notice warning"><strong>تنبيه:</strong> هذه واجهة أولية. لا تدخل بيانات تشغيل حقيقية قبل ربط قاعدة البيانات وتفعيل الحماية والنسخ الاحتياطي.</div>
+        <div class="stats">
+          <article class="stat-card"><span class="stat-icon green">♙</span><div><p>عدد الزبائن</p><strong id="statCustomers">—</strong><small>تظهر بعد ربط البيانات</small></div></article>
+          <article class="stat-card"><span class="stat-icon gold">▤</span><div><p>الزيت المنتج (لتر)</p><strong>—</strong><small>حسب سجلات الإنتاج</small></div></article>
+          <article class="stat-card"><span class="stat-icon blue">◷</span><div><p>واجبات الطحن (درهم)</p><strong>—</strong><small>حسب الوصولات المسجلة</small></div></article>
+          <article class="stat-card"><span class="stat-icon rose">↗</span><div><p>الزيت المسلّم (لتر)</p><strong>—</strong><small>حسب وصولات التسليم</small></div></article>
         </div>
-        <div class="card">
-          <small>مجموع الوزن الصافي (كلغ)</small>
-          <strong id="totalWeight">0</strong>
-        </div>
-        <div class="card">
-          <small>واجب الطحن المحسوب (درهم)</small>
-          <strong id="totalFees">0.00</strong>
-        </div>
-      </div>
-      <section>
-        <h2>مرحبًا بك</h2>
-        <p>ابدأ بتسجيل الزبائن ووصولات استلام الزيتون، ثم انتقل إلى الإنتاج والمخزون والحسابات.</p>
-        <p>السعر الابتدائي للطحن: <strong>0.70 درهم للكيلوغرام</strong>.</p>
+        <div class="grid-two"><article class="panel"><div class="panel-head"><div><h3>العمليات الأساسية</h3><p>انتقل مباشرة إلى العملية المطلوبة</p></div></div><div class="quick-actions"><button data-go="reception"><b>＋</b><span>وصل استلام جديد</span><small>وزن الزيتون وحساب واجب الطحن</small></button><button data-go="production"><b>⚙</b><span>تسجيل عملية طحن</span><small>إنتاج الزيت لكل زبون على حدة</small></button><button data-go="delivery"><b>↗</b><span>تسليم زيت</span><small>إصدار وصل تسليم مرقم</small></button><button data-go="accounts"><b>◷</b><span>تسجيل أداء</span><small>دفعة أو تسبيق على الحساب</small></button></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>قواعد العمل</h3><p>ضوابط أساسية لحماية السجلات</p></div></div><ul class="rules"><li>يُسجّل إنتاج كل زبون باسمه ولا يدمج مع زيت المعصرة.</li><li>يُحتسب واجب الطحن بسعر الوصل وقت الاستلام.</li><li>يجب ألا يتجاوز التسليم الرصيد المتوفر للزبون.</li><li>يُمنع صرف وصل التسليم نفسه أكثر من مرة.</li><li>الأوزان بالكيلوغرام والزيت باللتر، ولا تخلط الوحدات.</li></ul></article></div>
       </section>
-    </div>
-
-    <section id="reception" hidden>
-      <h2>تسجيل وصل استلام الزيتون</h2>
-      <form id="receiptForm">
-        <div class="fields">
-          <label>اسم الزبون
-            <input id="customer" required maxlength="120" placeholder="الاسم الكامل">
-          </label>
-          <label>رقم الهاتف
-            <input id="phone" inputmode="tel" placeholder="اختياري">
-          </label>
-          <label>الوزن الإجمالي (كلغ)
-            <input id="gross" type="number" min="0.01" step="0.01" required>
-          </label>
-          <label>وزن الخصم (كلغ)
-            <input id="tare" type="number" min="0" step="0.01" value="0" required>
-          </label>
-          <label>سعر الطحن (درهم/كلغ)
-            <input id="rate" type="number" min="0" step="0.01" value="0.70" required>
-          </label>
-        </div>
-        <p id="calculation">الوزن الصافي: 0 كلغ — واجب الطحن: 0.00 درهم</p>
-        <button class="primary" type="submit">إضافة الوصل إلى سجل التجربة</button>
-      </form>
-      <div class="notice">
-        هذه مرحلة أولية لاختبار الواجهة فقط. البيانات لا تزال مؤقتة داخل المتصفح، ولم تُربط بقاعدة البيانات بعد.
-      </div>
-    </section>
-
-    <section id="customers" hidden>
-      <h2>الزبائن</h2>
-      <p>سيتم هنا إعداد سجل الزبائن وربط كل وصل وإنتاج وحساب بصاحبه.</p>
-    </section>
-
-    <section id="production" hidden>
-      <h2>الإنتاج</h2>
-      <p>سيتم تسجيل كمية الزيت المستخرجة باللتر لكل زبون، مع تسجيل مخلفات العصر بصورة مستقلة.</p>
-    </section>
-
-    <section id="stock" hidden>
-      <h2>المخزون والتسليم</h2>
-      <p>سيتم فصل زيت الزبائن عن زيت المعصرة، مع وصولات تسليم مرقمة ومنع الصرف المكرر.</p>
-    </section>
-
-    <section id="accounts" hidden>
-      <h2>الحسابات</h2>
-      <p>سيتم تدبير واجبات الطحن والأداءات والتسبيقات والديون والمصاريف.</p>
-    </section>
-
-    <section id="receiptList" style="margin-top:18px">
-      <h2>الوصولات المسجلة في هذه الجلسة</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>رقم الوصل</th><th>الزبون</th><th>الوزن الصافي</th>
-              <th>السعر</th><th>واجب الطحن</th>
-            </tr>
-          </thead>
-          <tbody id="receiptRows">
-            <tr><td colspan="5">لا توجد وصولات بعد.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </main>
-
-  <footer>وحدة إنتاج زيت الزيتون البدر — النسخة التأسيسية</footer>
-
-  <script>
-    const receipts = [];
-    let nextReceipt = 1;
-    const $ = id => document.getElementById(id);
-
-    document.querySelectorAll("nav button").forEach(button => {
-      button.addEventListener("click", () => {
-        document.querySelectorAll("main > div[id], main > section[id]")
-          .forEach(el => {
-            if (el.id !== "receiptList") el.hidden = true;
-          });
-        $(button.dataset.page).hidden = false;
-        document.querySelectorAll("nav button")
-          .forEach(b => b.classList.toggle("active", b === button));
-      });
-    });
-
-    function calculate() {
-      const gross = Number($("gross").value) || 0;
-      const tare = Number($("tare").value) || 0;
-      const rate = Number($("rate").value) || 0;
-      const net = Math.max(0, gross - tare);
-      $("calculation").textContent =
-        `الوزن الصافي: ${net.toFixed(2)} كلغ — واجب الطحن: ${(net * rate).toFixed(2)} درهم`;
-    }
-
-    ["gross", "tare", "rate"].forEach(id =>
-      $(id).addEventListener("input", calculate)
-    );
-
-    $("receiptForm").addEventListener("submit", event => {
-      event.preventDefault();
-      const customer = $("customer").value.trim();
-      const gross = Number($("gross").value);
-      const tare = Number($("tare").value);
-      const rate = Number($("rate").value);
-
-      if (!customer || gross <= 0 || tare < 0 || tare > gross || rate < 0) {
-        alert("يرجى التحقق من اسم الزبون والأوزان والسعر.");
-        return;
-      }
-
-      receipts.push({
-        number: nextReceipt++,
-        customer,
-        net: gross - tare,
-        rate,
-        fee: (gross - tare) * rate
-      });
-
-      renderReceipts();
-      $("receiptForm").reset();
-      $("tare").value = "0";
-      $("rate").value = "0.70";
-      calculate();
-      alert("أضيف الوصل إلى سجل التجربة في هذه الصفحة.");
-    });
-
-    function renderReceipts() {
-      $("receiptRows").replaceChildren();
-      receipts.forEach(receipt => {
-        const row = document.createElement("tr");
-        [
-          receipt.number,
-          receipt.customer,
-          receipt.net.toFixed(2) + " كلغ",
-          receipt.rate.toFixed(2) + " درهم",
-          receipt.fee.toFixed(2) + " درهم"
-        ].forEach(value => {
-          const cell = document.createElement("td");
-          cell.textContent = value;
-          row.appendChild(cell);
-        });
-        $("receiptRows").appendChild(row);
-      });
-
-      $("receiptCount").textContent = receipts.length;
-      $("totalWeight").textContent =
-        receipts.reduce((sum, item) => sum + item.net, 0).toFixed(2);
-      $("totalFees").textContent =
-        receipts.reduce((sum, item) => sum + item.fee, 0).toFixed(2);
-    }
-  </script>
-</body>
-</html>
+      <section class="view" id="view-reception" hidden><div class="section-heading"><div><h2>استقبال الزيتون</h2><p>تسجيل وزن الحمولة وإنشاء وصل استلام.</p></div></div><form id="receiptForm" class="panel form-panel"><div class="form-grid"><label>اسم الزبون *<input name="customer" required maxlength="120" placeholder="الاسم الكامل"></label><label>الهاتف<input name="phone" inputmode="tel" placeholder="اختياري"></label><label>الوزن الإجمالي (كلغ) *<input name="gross" type="number" min="0.01" step="0.01" required></label><label>وزن الخصم (كلغ)<input name="tare" type="number" min="0" step="0.01" value="0" required></label><label>سعر الطحن (درهم/كلغ) *<input name="rate" type="number" min="0" step="0.01" value="0.70" required></label><label>ملاحظات<input name="notes" maxlength="300" placeholder="اختياري"></label></div><div class="calc-strip"><div><small>الوزن الصافي</small><strong id="netPreview">0.00 كلغ</strong></div><div><small>واجب الطحن</small><strong id="feePreview">0.00 درهم</strong></div></div><button class="primary" type="submit">حفظ في سجل التجربة</button><p class="form-help">الحفظ الحالي مؤقت في الذاكرة، وسيُستبدل بحفظ دائم في Supabase بعد الإعداد.</p></form><article class="panel table-panel"><h3>الوصولات في الجلسة الحالية</h3><div class="table-scroll"><table><thead><tr><th>رقم الوصل</th><th>الزبون</th><th>الصافي</th><th>السعر</th><th>الواجب</th></tr></thead><tbody id="receiptsBody"><tr><td colspan="5" class="empty">لا توجد وصولات في هذه الجلسة.</td></tr></tbody></table></div></article></section>
+      <section class="view" id="view-customers" hidden><div class="section-heading"><div><h2>الزبائن</h2><p>سجل موحد لربط الاستلام والإنتاج والمخزون والحسابات بكل زبون.</p></div></div><article class="panel empty-panel"><span class="large-icon">♙</span><h3>سجل الزبائن</h3><p>سيتم ربط هذه الصفحة بقاعدة البيانات لتسجيل الزبائن والبحث في سجلاتهم.</p></article></section>
+      <section class="view" id="view-production" hidden><div class="section-heading"><div><h2>الإنتاج والطحن</h2><p>تسجيل عملية الطحن ومردودية الزيت ومخلفات العصر.</p></div></div><article class="panel empty-panel"><span class="large-icon">⚙</span><h3>سجل عمليات الطحن</h3><p>سيُربط كل سجل بوصل استلام محدد، مع تسجيل الزيت المنتج باللتر ومخلفات العصر بالكيلوغرام.</p></article></section>
+      <section class="view" id="view-stock" hidden><div class="section-heading"><div><h2>مخزون الزيت</h2><p>عرض الأرصدة حسب مالك الزيت والدفعة.</p></div></div><article class="panel empty-panel"><span class="large-icon">▤</span><h3>ملكية منفصلة لكل رصيد</h3><p>سيظهر هنا زيت كل زبون بشكل مستقل، مع قسم منفصل لزيت المعصرة.</p></article></section>
+      <section class="view" id="view-delivery" hidden><div class="section-heading"><div><h2>تسليم الزيت</h2><p>إنشاء وصل تسليم والتحقق من الرصيد قبل الصرف.</p></div></div><article class="panel empty-panel"><span class="large-icon">↗</span><h3>وصولات تسليم الزيت</h3><p>سيتم تنفيذ التحقق ومنع الصرف المكرر داخل قاعدة البيانات بعملية ذرية، وليس في الواجهة فقط.</p></article></section>
+      <section class="view" id="view-accounts" hidden><div class="section-heading"><div><h2>الحسابات والأداءات</h2><p>واجبات الطحن والأداءات والتسبيقات والديون.</p></div></div><article class="panel empty-panel"><span class="large-icon">◷</span><h3>حساب كل زبون</h3><p>ستُسجّل الحركات المالية كقيود منفصلة مع الرصيد وتاريخ الحركة وطريقة الأداء.</p></article></section>
+      <section class="view" id="view-expenses" hidden><div class="section-heading"><div><h2>المصاريف</h2><p>المصاريف الثابتة والدورية والمتغيرة.</p></div></div><article class="panel empty-panel"><span class="large-icon">−</span><h3>سجل المصاريف</h3><p>سيشمل الأجور والصيانة والتحاليل والموردين وتدبير المرجان ومخلفات العصر.</p></article></section>
+      <section class="view" id="view-reports" hidden><div class="section-heading"><div><h2>التقارير</h2><p>تقارير يومية وشهرية وموسمية.</p></div></div><article class="panel empty-panel"><span class="large-icon">▥</span><h3>التقارير المالية والإنتاجية</h3><p>لن تعرض المنصة أرقاماً افتراضية؛ ستُحسب التقارير من السجلات الفعلية فقط.</p></article></section>
+      <section class="view" id="view-settings" hidden><div class="section-heading"><div><h2>الإعدادات</h2><p>ضبط معلومات المعصرة وسعر الطحن الافتراضي.</p></div></div><article class="panel form-panel"><label>اسم الوحدة<input value="وحدة إنتاج زيت الزيتون البدر" disabled></label><label>سعر الطحن الافتراضي (درهم/كلغ)<input id="defaultRate" type="number" min="0" step="0.01" value="0.70"></label><p class="form-help">تغيير السعر هنا تجريبي مؤقت. السعر النهائي سيُحفظ في قاعدة البيانات، مع الاحتفاظ بسعر كل وصل قديم.</p><button id="saveSettings" class="primary" type="button">حفظ السعر في هذه الجلسة</button><p id="settingsMessage" class="form-help" role="status"></p></article></section>
+    </div><footer>وحدة إنتاج زيت الزيتون البدر <span>•</span> النسخة التأسيسية</footer>
+  </main><div id="toast" class="toast" role="status" aria-live="polite"></div><script src="js/app.js"></script>
+</body></html>
